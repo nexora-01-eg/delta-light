@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html { scroll-behavior: smooth; }
+body {
+  background: #080808;
+  color: #F7F4EE;
+  font-family: var(--font-body-ar, "IBM Plex Sans Arabic"), Tajawal, "Noto Kufi Arabic", var(--font-latin, Manrope), Inter, system-ui, sans-serif;
+  overflow-x: hidden;
+}
+.font-display { font-family: var(--font-display-ar, Amiri), "IBM Plex Sans Arabic", serif; }
+.font-latin { font-family: var(--font-latin, Manrope), Inter, system-ui, sans-serif; }
+
+.gold-text { background: linear-gradient(135deg, #D6C3A5 0%, #C9A85D 45%, #F7F4EE 70%, #C9A85D 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.glass { background: rgba(23,23,23,0.55); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(201,168,93,0.18); }
+.hairline { border: 1px solid rgba(201,168,93,0.22); }
+.hero-glow { background: radial-gradient(ellipse 60% 45% at 50% 30%, rgba(201,168,93,0.28), rgba(201,168,93,0.06) 55%, transparent 75%); }
+.chandelier-rays { background: conic-gradient(from 180deg at 50% 0%, transparent 0deg, rgba(201,168,93,0.12) 12deg, transparent 24deg, rgba(201,168,93,0.09) 40deg, transparent 55deg, rgba(201,168,93,0.12) 75deg, transparent 95deg, rgba(201,168,93,0.08) 120deg, transparent 145deg, rgba(201,168,93,0.1) 170deg, transparent 190deg, rgba(201,168,93,0.08) 215deg, transparent 240deg, rgba(201,168,93,0.1) 265deg, transparent 290deg, rgba(201,168,93,0.07) 315deg, transparent 360deg); }
+.mask-reveal { clip-path: inset(0 0 100% 0); }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+/* editorial motion */
+@keyframes rise-in { from { opacity: 0; transform: translateY(46px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes beam-sweep { 0% { transform: translateX(-130%) skewX(-12deg); opacity: 0; } 12% { opacity: 1; } 55% { opacity: 1; } 100% { transform: translateX(230%) skewX(-12deg); opacity: 0; } }
+@keyframes marquee-x { from { transform: translateX(0); } to { transform: translateX(50%); } }
+@keyframes float-slow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+@keyframes ken-burns { 0% { transform: scale(1) translate(0, 0); } 100% { transform: scale(1.12) translate(-1.5%, -1.5%); } }
+@keyframes crossfade-in { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: scale(1); } }
+@keyframes pulse-glow { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+.anim-rise { opacity: 0; animation: rise-in 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.anim-beam { animation: beam-sweep 5.5s ease-in-out infinite; }
+.anim-marquee { animation: marquee-x 30s linear infinite; }
+.anim-float-slow { animation: float-slow 7s ease-in-out infinite; }
+.anim-ken-burns { animation: ken-burns 22s ease-in-out infinite alternate; }
+.anim-crossfade { animation: crossfade-in 0.9s ease both; }
+.spotlight-card { position: relative; }
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(201, 168, 93, 0.22), transparent 65%);
+  z-index: 1;
+}
+.spotlight-card:hover::before { opacity: 1; }
+.anim-pulse-glow { animation: pulse-glow 3.2s ease-in-out infinite; }
+:focus-visible { outline: 2px solid #C9A85D; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
